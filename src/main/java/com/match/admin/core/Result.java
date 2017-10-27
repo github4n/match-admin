@@ -3,7 +3,7 @@ package com.match.admin.core;
 import com.alibaba.fastjson.JSON;
 
 /**
- * Created by Administrator on 2017/10/26 0026.
+ * 统一API响应结果封装
  */
 public class Result {
     private int code;

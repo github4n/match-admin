@@ -1,7 +1,7 @@
 package com.match.admin.core;
 
 /**
- * Created by Administrator on 2017/10/26 0026.
+ * 服务（业务）异常如“ 账号或密码错误 ”，该异常只做INFO级别的日志记录 @see WebMvcConfigurer
  */
 public class ServiceException extends RuntimeException {
     public ServiceException() {

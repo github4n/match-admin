@@ -16,7 +16,7 @@ import java.util.Properties;
 import static com.match.admin.core.ProjectConstant.*;
 
 /**
- * Created by Administrator on 2017/10/26 0026.
+ * Mybatis & Mapper & PageHelper 配置
  */
 @Configuration
 public class MybatisConfigurer {

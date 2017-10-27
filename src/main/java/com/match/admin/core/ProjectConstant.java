@@ -1,7 +1,7 @@
 package com.match.admin.core;
 
 /**
- * Created by Administrator on 2017/10/26 0026.
+ * 项目常量
  */
 public class ProjectConstant {
     public static final String BASE_PACKAGE = "com.match.admin";//项目基础包名称，根据自己公司的项目修改

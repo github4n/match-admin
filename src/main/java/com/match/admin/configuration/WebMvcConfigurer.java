@@ -32,7 +32,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/10/26 0026.
+ * Spring MVC 配置
  */
 public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
     private final Logger logger = LoggerFactory.getLogger(WebMvcConfigurer.class);

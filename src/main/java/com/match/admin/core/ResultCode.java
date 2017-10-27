@@ -1,7 +1,7 @@
 package com.match.admin.core;
 
 /**
- * Created by Administrator on 2017/10/26 0026.
+ * 响应码枚举，参考HTTP状态码的语义
  */
 public enum ResultCode {
     SUCCESS(200),//成功
