@@ -18,9 +18,9 @@ import static com.match.admin.core.ProjectConstant.*;
  */
 public class CodeGenerator {
     //JDBC配置，请修改为你项目的实际配置
-    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/matchs";
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/matchs?useSSL=false";
     private static final String JDBC_USERNAME = "spider";
-    private static final String JDBC_PASSWORD = "spder";
+    private static final String JDBC_PASSWORD = "spider";
     private static final String JDBC_DIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
     private static final String PROJECT_PATH = System.getProperty("user.dir");//项目在硬盘上的基础路径
@@ -37,7 +37,7 @@ public class CodeGenerator {
     private static final String DATE = new SimpleDateFormat("yyyy/MM/dd").format(new Date());//@date
 
     public static void main(String[] args) {
-        genCode("输入表名");
+        genCode("odds");
         //genCodeByCustomModelName("输入表名","输入自定义Model名称");
     }
 

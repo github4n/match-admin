@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.match.admin.dao.MatchsMapper">
+  <resultMap id="BaseResultMap" type="com.match.admin.model.Matchs">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="matchs_id" jdbcType="INTEGER" property="matchsId" />
+    <result column="league" jdbcType="VARCHAR" property="league" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="home" jdbcType="VARCHAR" property="home" />
+    <result column="guest" jdbcType="VARCHAR" property="guest" />
+    <result column="home_goal" jdbcType="INTEGER" property="homeGoal" />
+    <result column="guest_goal" jdbcType="INTEGER" property="guestGoal" />
+    <result column="home_goal_h" jdbcType="INTEGER" property="homeGoalH" />
+    <result column="guest_goal_h" jdbcType="INTEGER" property="guestGoalH" />
+    <result column="points" jdbcType="DOUBLE" property="points" />
+    <result column="goals" jdbcType="DOUBLE" property="goals" />
+    <result column="home_corner" jdbcType="INTEGER" property="homeCorner" />
+    <result column="guest_corner" jdbcType="INTEGER" property="guestCorner" />
+    <result column="home_red" jdbcType="INTEGER" property="homeRed" />
+    <result column="guest_red" jdbcType="INTEGER" property="guestRed" />
+    <result column="home_yellow" jdbcType="INTEGER" property="homeYellow" />
+    <result column="guest_yellow" jdbcType="INTEGER" property="guestYellow" />
+  </resultMap>
+</mapper>

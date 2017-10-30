@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.match.admin.dao.OddsMapper">
+  <resultMap id="BaseResultMap" type="com.match.admin.model.Odds">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="odds_id" jdbcType="INTEGER" property="oddsId" />
+    <result column="matchs_id" jdbcType="INTEGER" property="matchsId" />
+    <result column="companys_id" jdbcType="INTEGER" property="companysId" />
+    <result column="time" jdbcType="TIMESTAMP" property="time" />
+    <result column="win" jdbcType="DOUBLE" property="win" />
+    <result column="draw" jdbcType="DOUBLE" property="draw" />
+    <result column="lose" jdbcType="DOUBLE" property="lose" />
+    <result column="k_win" jdbcType="DOUBLE" property="kWin" />
+    <result column="k_draw" jdbcType="DOUBLE" property="kDraw" />
+    <result column="k_lose" jdbcType="DOUBLE" property="kLose" />
+  </resultMap>
+</mapper>
