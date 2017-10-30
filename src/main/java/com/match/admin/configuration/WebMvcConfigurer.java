@@ -18,10 +18,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.ServletException;
@@ -121,6 +118,13 @@ public class WebMvcConfigurer extends WebMvcConfigurerAdapter {
                 }
             });
         }
+    }
+
+    //配置静态资源
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        //将所有/static/** 访问都映射到classpath:/static/ 目录下
+        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
     private void responseResult(HttpServletResponse response, Result result) {

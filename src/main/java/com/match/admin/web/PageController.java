@@ -1,16 +1,27 @@
 package com.match.admin.web;
 
 
+import com.match.admin.model.Odds;
+import com.match.admin.service.OddsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import tk.mybatis.mapper.entity.Condition;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Marco on 2017/10/30 0030.
  */
 @Controller
 public class PageController {
+    @Resource
+    private OddsService oddsService;
+
     private String userName = "Marco";
 
     @RequestMapping(value = "/")
@@ -23,6 +34,8 @@ public class PageController {
 
     @GetMapping(value = "/page/test")
     public String test(ModelMap map){
+        Map<String,Object> mapp = new HashMap<>();
+        mapp.put("matchs_id","1197760");
         map.addAttribute("name","test");
         return "page/test";
     }
