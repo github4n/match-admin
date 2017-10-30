@@ -8,7 +8,8 @@
 </head>
 <body>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-<div id="main" style="width: 600px;height:400px;"></div>
+<div id="main" style="width: 50%;height:500px;"></div>
+${count}
 </body>
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts实例
@@ -17,21 +18,33 @@
     // 指定图表的配置项和数据
     var option = {
         title: {
-            text: 'ECharts 入门示例'
+            text: '未来一周气温变化',
+            subtext: '纯属虚构'
         },
-        tooltip: {},
+        tooltip: {trigger: 'axis'},
+        toolbox: {show: true,feature: {dataZoom: {yAxisIndex: 'none'},dataView: {readOnly: false},magicType: {type: ['line', 'bar']},restore: {},saveAsImage: {}}},
+        yAxis: {type: 'value',axisLabel: {formatter: '{value}'}},
+
         legend: {
-            data:['销量']
+            data:['最高气温','最低气温']
         },
-        xAxis: {
-            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+        xAxis:  {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一','周二','周三','周四','周五','周六','周日']
         },
-        yAxis: {},
-        series: [{
-            name: '销量',
-            type: 'bar',
-            data: [5, 20, 36, 10, 10, 20]
-        }]
+        series: [
+            {
+                name:'最高气温',
+                type:'line',
+                data:['', 11, 15, 13, 12, 13, 10]
+            },
+            {
+                name:'最低气温',
+                type:'line',
+                data:[1, -2, 2, 5, 3, 2, 0]
+            }
+        ]
     };
 
     // 使用刚指定的配置项和数据显示图表。
