@@ -7,6 +7,7 @@ import com.match.admin.service.OddsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tk.mybatis.mapper.entity.Condition;
 import tk.mybatis.mapper.entity.Example;
@@ -32,12 +33,11 @@ public class PageController {
         return "welcome";
     }
 
-    @GetMapping(value = "/page/test")
-    public String test(ModelMap map){
+    @GetMapping(value = "/test/{matchsId}")
+    public String test(ModelMap map, @PathVariable("matchsId") String matchsId){
         Condition condition = new Condition(Odds.class);
         condition.setOrderByClause("time");
         Example.Criteria criteria = condition.createCriteria();
-        String matchsId = "1197763";
         criteria.andEqualTo("matchsId",matchsId);
         criteria.andEqualTo("companyId", "281");//Bet 365
 
