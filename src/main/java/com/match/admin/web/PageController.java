@@ -59,8 +59,11 @@ public class PageController {
         option.put("yAxis", yAxis);
 
         Set<String> timeSet= new HashSet<>();
+        Set<String> companySet = new HashSet<>();
+
         for (Odds odds : list) {
             timeSet.add(odds.getTime().toString());
+            companySet.add(odds.getCompanysId().toString());
         }
         map.put("count", list.size());
         System.out.println(JSON.toJSON(timeSet));
