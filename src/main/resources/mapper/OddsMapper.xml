@@ -7,7 +7,7 @@
     -->
     <id column="odds_id" jdbcType="INTEGER" property="oddsId" />
     <result column="matchs_id" jdbcType="INTEGER" property="matchsId" />
-    <result column="companys_id" jdbcType="INTEGER" property="companysId" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="win" jdbcType="DOUBLE" property="win" />
     <result column="draw" jdbcType="DOUBLE" property="draw" />

@@ -17,8 +17,8 @@ public class Odds {
     /**
      * 公司id
      */
-    @Column(name = "companys_id")
-    private Integer companysId;
+    @Column(name = "company_id")
+    private Integer companyId;
 
     /**
      * 时间
@@ -93,19 +93,19 @@ public class Odds {
     /**
      * 获取公司id
      *
-     * @return companys_id - 公司id
+     * @return company_id - 公司id
      */
-    public Integer getCompanysId() {
-        return companysId;
+    public Integer getCompanyId() {
+        return companyId;
     }
 
     /**
      * 设置公司id
      *
-     * @param companysId 公司id
+     * @param companyId 公司id
      */
-    public void setCompanysId(Integer companysId) {
-        this.companysId = companysId;
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 
     /**

@@ -4,7 +4,7 @@ import com.match.admin.core.Service;
 
 
 /**
- * Created by CodeGenerator on 2017/10/30.
+ * Created by CodeGenerator on 2017/10/31.
  */
 public interface OddsService extends Service<Odds> {
 

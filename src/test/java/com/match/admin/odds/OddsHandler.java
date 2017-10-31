@@ -20,7 +20,7 @@ public class OddsHandler extends Tester{
     @Resource
     private OddsService oddsService;
 
-    @Test
+//    @Test
     public void oddsHandler() {
         long start = Instant.now().getEpochSecond();
         Condition condition = new Condition(Odds.class);
@@ -37,9 +37,9 @@ public class OddsHandler extends Tester{
 
         for (Odds odds : list) {
             timeSet.add(odds.getTime());
-            companyIdSet.add(odds.getCompanysId());
-            if (!companyWinDataMap.containsKey(odds.getCompanysId())) {
-                companyWinDataMap.put(odds.getCompanysId(), new ArrayList<>());
+            companyIdSet.add(odds.getCompanyId());
+            if (!companyWinDataMap.containsKey(odds.getCompanyId())) {
+                companyWinDataMap.put(odds.getCompanyId(), new ArrayList<>());
             }
         }
 
@@ -50,7 +50,7 @@ public class OddsHandler extends Tester{
         }
 
         for (Odds odds : list) {
-            List<Object> companyWinData = companyWinDataMap.get(odds.getCompanysId());
+            List<Object> companyWinData = companyWinDataMap.get(odds.getCompanyId());
             int i = 0;
             for (Date time : timeSet) {
                 if (time.equals(odds.getTime())) {

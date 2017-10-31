@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by CodeGenerator on 2017/10/30.
+* Created by CodeGenerator on 2017/10/31.
 */
 @RestController
 @RequestMapping("/company")
