@@ -37,25 +37,14 @@ public class PageController {
     public String test(ModelMap map, @PathVariable("matchsId") String matchsId){
         Condition condition = new Condition(Odds.class);
         condition.setOrderByClause("time");
-        Example.Criteria criteria = condition.createCriteria();
-        criteria.andEqualTo("matchsId",matchsId);
-        criteria.andEqualTo("companyId", "281");//Bet 365
 
-        Example.Criteria criteria2 = condition.createCriteria();
-        criteria2.andEqualTo("matchsId",matchsId);
-        criteria2.andEqualTo("companyId", "81");//Vcbet
-        condition.or(criteria2);
-
-        Example.Criteria criteria3 = condition.createCriteria();
-        criteria3.andEqualTo("matchsId",matchsId);
-        criteria3.andEqualTo("companyId", "16");//10BET
-        condition.or(criteria3);
-
-        Example.Criteria criteria4 = condition.createCriteria();
-        criteria4.andEqualTo("matchsId",matchsId);
-        criteria4.andEqualTo("companyId", "571");//Jetbull
-        condition.or(criteria4);
-
+        int[] companyList = {281, 81, 16, 571, 463};//, 474, 709, 494, 828};
+        for (int companyId : companyList) {
+            Example.Criteria criteria = condition.createCriteria();
+            criteria.andEqualTo("matchsId", matchsId);
+            criteria.andEqualTo("companyId", companyId);
+            condition.or(criteria);
+        }
 //        criteria.orEqualTo("companyId", "463");
 //        criteria.orEqualTo("companyId", "474");
 //        criteria.orEqualTo("companyId", "709");
@@ -122,9 +111,22 @@ public class PageController {
             }
         }
 
+        Map<String, Object> winOption = getOption(matchsId, "胜赔", companyIdSet, timeSet, companyWinDataMap);
+        Map<String, Object> drawOption = getOption(matchsId, "平赔", companyIdSet, timeSet, companyDrawDataMap);
+        Map<String, Object> loseOption = getOption(matchsId, "负赔", companyIdSet, timeSet, companyLoseDataMap);
+
+
+        map.put("winOption", JSON.toJSON(winOption).toString());
+        map.put("drawOption", JSON.toJSON(drawOption).toString());
+        map.put("loseOption", JSON.toJSON(loseOption).toString());
+
+        return "page/test";
+    }
+
+    private Map<String, Object> getOption(String matchsId, String type,Set<String> companyIdSet,Set<Date> timeSet,Map<String, List<Object>> companyDataMap) {
         Map<String, Object> option = new HashMap<>();
 
-        String titleStr = "{'text': 'matchsId:" + matchsId + "','subtext': 'test'}";
+        String titleStr = "{'text': '" + type + "','subtext': '" + matchsId + "'}";
         Map<String, Object> title = JSON.parseObject(titleStr, HashMap.class);
         option.put("title", title);
 
@@ -132,11 +134,11 @@ public class PageController {
         Map<String, Object> tooltip = JSON.parseObject(tooltipStr, HashMap.class);
         option.put("tooltip", tooltip);
 
-        String toolboxStr = "{show: true,feature: {dataZoom: {yAxisIndex: 'none'},dataView: {readOnly: false},magicType: {type: ['line', 'bar']},restore: {},saveAsImage: {}}}";
+        String toolboxStr = "{show: true,feature: {dataZoom: {yAxisIndex: 'none'},dataView: {readOnly: false},restore: {},saveAsImage: {}}}";
         Map<String, Object> toolbox = JSON.parseObject(toolboxStr, HashMap.class);
         option.put("toolbox", toolbox);
 
-        String yAxisStr = "{type: 'value'}";
+        String yAxisStr = "{type: 'value',scale: false,}";//y坐标脱离0值开始“scale”选值为“true”，否则为“false”
         Map<String, Object> yAxis = JSON.parseObject(yAxisStr, HashMap.class);
         option.put("yAxis", yAxis);
 
@@ -144,9 +146,10 @@ public class PageController {
         Map<String, Object> legend = JSON.parseObject(legendStr, HashMap.class);
         List<String> legendData = (List<String>)legend.get("data");
         for (String companyId : companyIdSet) {
-            legendData.add(companyId+"W");
-            legendData.add(companyId+"D");
-            legendData.add(companyId+"L");
+            legendData.add(companyId);
+//            legendData.add(companyId+"W");
+//            legendData.add(companyId+"D");
+//            legendData.add(companyId+"L");
         }
         option.put("legend", legend);
 
@@ -164,28 +167,54 @@ public class PageController {
         List<Object> series = new ArrayList<>();
         for (String companyId : companyIdSet) {
             Map<String, Object> seriesMap = new HashMap<>();
-            seriesMap.put("name", companyId+"W");
+            seriesMap.put("name", companyId);
+//            seriesMap.put("name", companyId+"W");
             seriesMap.put("type", "line");
-            seriesMap.put("data", companyWinDataMap.get(companyId));
+            seriesMap.put("symbol","diamond");
+            seriesMap.put("data", companyDataMap.get(companyId));
+
+            Map<String, Object> lineStyleMap = new HashMap<>();
+            Map<String, Object> normalMap = new HashMap<>();
+            normalMap.put("type","solid");//solid/dashed/dotted
+            lineStyleMap.put("normal", normalMap);
+            seriesMap.put("lineStyle", lineStyleMap);
+
             series.add(seriesMap);
         }
-        for (String companyId : companyIdSet) {
-            Map<String, Object> seriesMap = new HashMap<>();
-            seriesMap.put("name", companyId+"D");
-            seriesMap.put("type", "line");
-            seriesMap.put("data", companyDrawDataMap.get(companyId));
-            series.add(seriesMap);
-        }
-        for (String companyId : companyIdSet) {
-            Map<String, Object> seriesMap = new HashMap<>();
-            seriesMap.put("name", companyId+"L");
-            seriesMap.put("type", "line");
-            seriesMap.put("data", companyLoseDataMap.get(companyId));
-            series.add(seriesMap);
-        }
+//        for (String companyId : companyIdSet) {
+//            Map<String, Object> seriesMap = new HashMap<>();
+//            seriesMap.put("name", companyId);
+////            seriesMap.put("name", companyId+"D");
+//            seriesMap.put("type", "line");
+//            seriesMap.put("symbol","rect");
+//            seriesMap.put("data", companyDrawDataMap.get(companyId));
+//
+//            Map<String, Object> lineStyleMap = new HashMap<>();
+//            Map<String, Object> normalMap = new HashMap<>();
+//            normalMap.put("type","solid");//solid/dashed/dotted
+//            lineStyleMap.put("normal", normalMap);
+//            seriesMap.put("lineStyle", lineStyleMap);
+//
+//            series.add(seriesMap);
+//        }
+//        for (String companyId : companyIdSet) {
+//            Map<String, Object> seriesMap = new HashMap<>();
+//            seriesMap.put("name", companyId);
+////            seriesMap.put("name", companyId+"L");
+//            seriesMap.put("type", "line");
+//            seriesMap.put("symbol","triangle");
+//            seriesMap.put("data", companyLoseDataMap.get(companyId));
+//
+//            Map<String, Object> lineStyleMap = new HashMap<>();
+//            Map<String, Object> normalMap = new HashMap<>();
+//            normalMap.put("type","solid");//solid/dashed/dotted
+//            lineStyleMap.put("normal", normalMap);
+//            seriesMap.put("lineStyle", lineStyleMap);
+//
+//            series.add(seriesMap);
+//        }
         option.put("series", series);
 
-        map.put("option", JSON.toJSON(option).toString());
-        return "page/test";
+        return option;
     }
 }
