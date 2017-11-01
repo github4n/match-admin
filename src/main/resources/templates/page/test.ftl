@@ -8,9 +8,9 @@
 </head>
 <body>
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-<div id="win" style="width: 50%;height:450px;"></div>
-<div id="draw" style="width: 50%;height:450px;"></div>
-<div id="lose" style="width: 50%;height:450px;"></div>
+<div id="win" style="width: 33%;height:450px;float: left;top: 50px;"></div>
+<div id="draw" style="width: 33%;height:450px;float: left;top: 50px;"></div>
+<div id="lose" style="width: 33%;height:450px;float: left;top: 50px;"></div>
 </body>
 <script type="text/javascript">
     var win = echarts.init(document.getElementById('win'));
