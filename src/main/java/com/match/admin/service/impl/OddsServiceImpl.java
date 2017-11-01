@@ -18,5 +18,4 @@ import javax.annotation.Resource;
 public class OddsServiceImpl extends AbstractService<Odds> implements OddsService {
     @Resource
     private OddsMapper oddsMapper;
-
 }
