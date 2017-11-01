@@ -38,11 +38,17 @@ public class PageController {
         Condition condition = new Condition(Odds.class);
         condition.setOrderByClause("time");
 
-        int[] companyList = {281, 81, 16, 571, 463, 474, 709, 494, 828,462,530,1017,1098,1132};
-        for (int companyId : companyList) {
+        int[] companyList = {};//{281, 81, 16, 571, 463, 474, 709, 494, 828,462,530,1017,1098,1132};
+        if (companyList.length > 0) {
+            for (int companyId : companyList) {
+                Example.Criteria criteria = condition.createCriteria();
+                criteria.andEqualTo("matchsId", matchsId);
+                criteria.andEqualTo("companyId", companyId);
+                condition.or(criteria);
+            }
+        } else {
             Example.Criteria criteria = condition.createCriteria();
             criteria.andEqualTo("matchsId", matchsId);
-            criteria.andEqualTo("companyId", companyId);
             condition.or(criteria);
         }
         List<Odds> list = oddsService.findByCondition(condition);
@@ -111,9 +117,9 @@ public class PageController {
             }
         }
 
-        Map<String, Object> winOption = getOption(matchsId, "胜赔", yMaxValue, companyIdSet, timeSet, companyWinDataMap);
-        Map<String, Object> drawOption = getOption(matchsId, "平赔", yMaxValue, companyIdSet, timeSet, companyDrawDataMap);
-        Map<String, Object> loseOption = getOption(matchsId, "负赔", yMaxValue, companyIdSet, timeSet, companyLoseDataMap);
+        Map<String, Object> winOption = getOption(matchsId, "Win", yMaxValue, companyIdSet, timeSet, companyWinDataMap);
+        Map<String, Object> drawOption = getOption(matchsId, "Draw", yMaxValue, companyIdSet, timeSet, companyDrawDataMap);
+        Map<String, Object> loseOption = getOption(matchsId, "Lose", yMaxValue, companyIdSet, timeSet, companyLoseDataMap);
 
 
         map.put("winOption", JSON.toJSON(winOption).toString());
