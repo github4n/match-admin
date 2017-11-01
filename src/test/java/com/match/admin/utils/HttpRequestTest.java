@@ -1,13 +1,12 @@
 package com.match.admin.utils;
 
 import org.junit.Test;
-import project.Tester;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HttpRequestTest extends Tester {
+public class HttpRequestTest {
     @Test
     public void doGet() throws Exception {
         Map<String, String> headerMap = new HashMap<>();

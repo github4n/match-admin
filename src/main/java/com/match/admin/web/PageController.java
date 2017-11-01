@@ -4,6 +4,7 @@ package com.match.admin.web;
 import com.alibaba.fastjson.JSON;
 import com.match.admin.model.Odds;
 import com.match.admin.service.OddsService;
+import com.match.admin.utils.SpiderMisc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,8 +34,14 @@ public class PageController {
         return "welcome";
     }
 
-    @GetMapping(value = "/test/{matchsId}")
-    public String test(ModelMap map, @PathVariable("matchsId") String matchsId){
+    @GetMapping(value = "/matcheslist")
+    public String matchesListPage(ModelMap map) throws Exception {
+        map.put("matchesList", SpiderMisc.getAllMatches());
+        return "page/matchesList";
+    }
+
+    @GetMapping(value = "/matchesoddsinfo/{matchsId}")
+    public String matchesOddsInfo(ModelMap map, @PathVariable("matchsId") String matchsId){
         Condition condition = new Condition(Odds.class);
         condition.setOrderByClause("time");
 
@@ -126,7 +133,7 @@ public class PageController {
         map.put("drawOption", JSON.toJSON(drawOption).toString());
         map.put("loseOption", JSON.toJSON(loseOption).toString());
 
-        return "page/test";
+        return "page/matchesOddsInfo";
     }
 
     private Map<String, Object> getOption(String matchsId, String type, Double yMaxValue, Set<String> companyIdSet, Set<Date> timeSet, Map<String, List<Object>> companyDataMap) {
