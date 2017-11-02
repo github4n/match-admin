@@ -11,8 +11,8 @@ public class Odds {
     /**
      * 比赛id
      */
-    @Column(name = "matchs_id")
-    private Integer matchsId;
+    @Column(name = "matches_id")
+    private Integer matchesId;
 
     /**
      * 公司id
@@ -75,19 +75,19 @@ public class Odds {
     /**
      * 获取比赛id
      *
-     * @return matchs_id - 比赛id
+     * @return matches_id - 比赛id
      */
-    public Integer getMatchsId() {
-        return matchsId;
+    public Integer getMatchesId() {
+        return matchesId;
     }
 
     /**
      * 设置比赛id
      *
-     * @param matchsId 比赛id
+     * @param matchesId 比赛id
      */
-    public void setMatchsId(Integer matchsId) {
-        this.matchsId = matchsId;
+    public void setMatchesId(Integer matchesId) {
+        this.matchesId = matchesId;
     }
 
     /**

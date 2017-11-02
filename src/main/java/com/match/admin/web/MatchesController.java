@@ -1,8 +1,8 @@
 package com.match.admin.web;
 import com.match.admin.core.Result;
 import com.match.admin.core.ResultGenerator;
-import com.match.admin.model.Matchs;
-import com.match.admin.service.MatchsService;
+import com.match.admin.model.Matches;
+import com.match.admin.service.MatchesService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,42 +14,42 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
-* Created by CodeGenerator on 2017/10/30.
+* Created by CodeGenerator on 2017/11/02.
 */
 @RestController
-@RequestMapping("/matchs")
-public class MatchsController {
+@RequestMapping("/matches")
+public class MatchesController {
     @Resource
-    private MatchsService matchsService;
+    private MatchesService matchesService;
 
     @PostMapping("/add")
-    public Result add(Matchs matchs) {
-        matchsService.save(matchs);
+    public Result add(Matches matches) {
+        matchesService.save(matches);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/delete")
     public Result delete(@RequestParam Integer id) {
-        matchsService.deleteById(id);
+        matchesService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/update")
-    public Result update(Matchs matchs) {
-        matchsService.update(matchs);
+    public Result update(Matches matches) {
+        matchesService.update(matches);
         return ResultGenerator.genSuccessResult();
     }
 
     @PostMapping("/detail")
     public Result detail(@RequestParam Integer id) {
-        Matchs matchs = matchsService.findById(id);
-        return ResultGenerator.genSuccessResult(matchs);
+        Matches matches = matchesService.findById(id);
+        return ResultGenerator.genSuccessResult(matches);
     }
 
     @PostMapping("/list")
     public Result list(@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "0") Integer size) {
         PageHelper.startPage(page, size);
-        List<Matchs> list = matchsService.findAll();
+        List<Matches> list = matchesService.findAll();
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }

@@ -40,8 +40,14 @@ public class PageController {
         return "page/matchesList";
     }
 
-    @GetMapping(value = "/matchesoddsinfo/{matchsId}")
-    public String matchesOddsInfo(ModelMap map, @PathVariable("matchsId") String matchsId){
+    @GetMapping(value = "/matchesoddsinfo/{matchesId}")
+    public String matchesOddsInfo(ModelMap map, @PathVariable("matchesId") String matchesId) {
+
+        return "page/matchesOddsInfo";
+    }
+
+    @GetMapping(value = "/matchesoddsinfofromdatabase/{matchesId}")
+    public String matchesOddsInfoFromDatabase(ModelMap map, @PathVariable("matchesId") String matchesId){
         Condition condition = new Condition(Odds.class);
         condition.setOrderByClause("time");
 
@@ -49,13 +55,13 @@ public class PageController {
         if (companyList.length > 0) {
             for (int companyId : companyList) {
                 Example.Criteria criteria = condition.createCriteria();
-                criteria.andEqualTo("matchsId", matchsId);
+                criteria.andEqualTo("matchesId", matchesId);
                 criteria.andEqualTo("companyId", companyId);
                 condition.or(criteria);
             }
         } else {
             Example.Criteria criteria = condition.createCriteria();
-            criteria.andEqualTo("matchsId", matchsId);
+            criteria.andEqualTo("matchesId", matchesId);
             condition.or(criteria);
         }
         List<Odds> list = oddsService.findByCondition(condition);
@@ -124,9 +130,9 @@ public class PageController {
             }
         }
 
-        Map<String, Object> winOption = getOption(matchsId, "Win", yMaxValue, companyIdSet, timeSet, companyWinDataMap);
-        Map<String, Object> drawOption = getOption(matchsId, "Draw", yMaxValue, companyIdSet, timeSet, companyDrawDataMap);
-        Map<String, Object> loseOption = getOption(matchsId, "Lose", yMaxValue, companyIdSet, timeSet, companyLoseDataMap);
+        Map<String, Object> winOption = getOption(matchesId, "Win", yMaxValue, companyIdSet, timeSet, companyWinDataMap);
+        Map<String, Object> drawOption = getOption(matchesId, "Draw", yMaxValue, companyIdSet, timeSet, companyDrawDataMap);
+        Map<String, Object> loseOption = getOption(matchesId, "Lose", yMaxValue, companyIdSet, timeSet, companyLoseDataMap);
 
 
         map.put("winOption", JSON.toJSON(winOption).toString());
@@ -136,10 +142,10 @@ public class PageController {
         return "page/matchesOddsInfo";
     }
 
-    private Map<String, Object> getOption(String matchsId, String type, Double yMaxValue, Set<String> companyIdSet, Set<Date> timeSet, Map<String, List<Object>> companyDataMap) {
+    private Map<String, Object> getOption(String matchesId, String type, Double yMaxValue, Set<String> companyIdSet, Set<Date> timeSet, Map<String, List<Object>> companyDataMap) {
         Map<String, Object> option = new HashMap<>();
 
-        String titleStr = "{'text': '" + type + "','subtext': '" + matchsId + "'}";
+        String titleStr = "{'text': '" + type + "','subtext': '" + matchesId + "'}";
         Map<String, Object> title = JSON.parseObject(titleStr, HashMap.class);
         option.put("title", title);
 

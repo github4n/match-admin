@@ -6,7 +6,7 @@
       WARNING - @mbg.generated
     -->
     <id column="odds_id" jdbcType="INTEGER" property="oddsId" />
-    <result column="matchs_id" jdbcType="INTEGER" property="matchsId" />
+    <result column="matches_id" jdbcType="INTEGER" property="matchesId" />
     <result column="company_id" jdbcType="INTEGER" property="companyId" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="win" jdbcType="DOUBLE" property="win" />

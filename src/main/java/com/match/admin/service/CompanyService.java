@@ -4,7 +4,7 @@ import com.match.admin.core.Service;
 
 
 /**
- * Created by CodeGenerator on 2017/10/31.
+ * Created by CodeGenerator on 2017/11/02.
  */
 public interface CompanyService extends Service<Company> {
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.match.admin.dao.MatchsMapper">
-  <resultMap id="BaseResultMap" type="com.match.admin.model.Matchs">
+<mapper namespace="com.match.admin.dao.MatchesMapper">
+  <resultMap id="BaseResultMap" type="com.match.admin.model.Matches">
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="matchs_id" jdbcType="INTEGER" property="matchsId" />
+    <id column="matches_id" jdbcType="INTEGER" property="matchesId" />
     <result column="league" jdbcType="VARCHAR" property="league" />
     <result column="time" jdbcType="TIMESTAMP" property="time" />
     <result column="home" jdbcType="VARCHAR" property="home" />

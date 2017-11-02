@@ -14,4 +14,10 @@ public class SpiderMiscTest {
         System.out.println(matchesList);
     }
 
+    @Test
+    public void getMatchesByMatchesIdFromNet() throws Exception {
+        String response = SpiderMisc.getMatchesByMatchesIdFromNet("1474197");
+        System.out.println(response);
+    }
+
 }

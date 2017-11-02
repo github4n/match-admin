@@ -1,8 +1,8 @@
 package com.match.admin.service.impl;
 
-import com.match.admin.dao.OddsMapper;
-import com.match.admin.model.Odds;
-import com.match.admin.service.OddsService;
+import com.match.admin.dao.MatchesMapper;
+import com.match.admin.model.Matches;
+import com.match.admin.service.MatchesService;
 import com.match.admin.core.AbstractService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,8 +15,8 @@ import javax.annotation.Resource;
  */
 @Service
 @Transactional
-public class OddsServiceImpl extends AbstractService<Odds> implements OddsService {
+public class MatchesServiceImpl extends AbstractService<Matches> implements MatchesService {
     @Resource
-    private OddsMapper oddsMapper;
+    private MatchesMapper matchesMapper;
 
 }

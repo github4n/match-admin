@@ -3,10 +3,10 @@ package com.match.admin.model;
 import java.util.Date;
 import javax.persistence.*;
 
-public class Matchs {
+public class Matches {
     @Id
-    @Column(name = "matchs_id")
-    private Integer matchsId;
+    @Column(name = "matches_id")
+    private Integer matchesId;
 
     /**
      * 联赛
@@ -99,17 +99,17 @@ public class Matchs {
     private Integer guestYellow;
 
     /**
-     * @return matchs_id
+     * @return matches_id
      */
-    public Integer getMatchsId() {
-        return matchsId;
+    public Integer getMatchesId() {
+        return matchesId;
     }
 
     /**
-     * @param matchsId
+     * @param matchesId
      */
-    public void setMatchsId(Integer matchsId) {
-        this.matchsId = matchsId;
+    public void setMatchesId(Integer matchesId) {
+        this.matchesId = matchesId;
     }
 
     /**
