@@ -20,4 +20,9 @@ public class SpiderMiscTest {
         System.out.println(response);
     }
 
+    @Test
+    public void getPanLu() throws Exception {
+        System.out.println(SpiderMisc.getPanLu("1444567"));
+    }
+
 }
