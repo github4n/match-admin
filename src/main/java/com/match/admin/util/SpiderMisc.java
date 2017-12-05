@@ -161,58 +161,38 @@ public class SpiderMisc {
             map.put("guestGoalH", temp[11]);
             panLuList.add(map);
         }
-        int matchesCount = 3;
-
-        int homeSignal = 0;
-        int guestSignal = 0;
-
-        for (Map<String, String> temp : panLuList) {
-            if (homeId.equals(temp.get("homeId")) || homeId.equals(temp.get("guestId"))) {
-                if (homeId.equals(temp.get("homeId"))) {
-                    Integer homeGoal = Integer.parseInt(temp.get("homeGoal"));
-                    Integer homeGoalH = Integer.parseInt(temp.get("homeGoalH"));
-                    if (homeGoal - homeGoalH == 0) {
-                        homeSignal++;
-                    } else {
-                        break;
-                    }
-                } else {
-                    Integer guestGoal = Integer.parseInt(temp.get("guestGoal"));
-                    Integer guestGoalH = Integer.parseInt(temp.get("guestGoalH"));
-                    if (guestGoal - guestGoalH == 0) {
-                        homeSignal++;
-                    } else {
-                        break;
-                    }
-                }
-
-            }
-        }
-        for (Map<String, String> temp : panLuList) {
-            if (guestId.equals(temp.get("homeId")) || guestId.equals(temp.get("guestId"))) {
-                if (guestId.equals(temp.get("guestId"))) {
-                    Integer homeGoal = Integer.parseInt(temp.get("homeGoal"));
-                    Integer homeGoalH = Integer.parseInt(temp.get("homeGoalH"));
-                    if (homeGoal - homeGoalH == 0) {
-                        guestSignal++;
-                    } else {
-                        break;
-                    }
-                } else {
-                    Integer guestGoal = Integer.parseInt(temp.get("guestGoal"));
-                    Integer guestGoalH = Integer.parseInt(temp.get("guestGoalH"));
-                    if (guestGoal - guestGoalH == 0) {
-                        guestSignal++;
-                    } else {
-                        break;
-                    }
-                }
-            }
-        }
+        int homeSignal = checkSignal(panLuList, homeId);
+        int guestSignal = checkSignal(panLuList, guestId);
         ArrayList<Integer> resultList = new ArrayList<>();
         resultList.add(homeSignal);
         resultList.add(guestSignal);
         return resultList;
+    }
+
+    private static int checkSignal(List<Map<String, String>> panLuList, String teamId) {
+        int signal = 0;
+        for (Map<String, String> temp : panLuList) {
+            if (teamId.equals(temp.get("homeId")) || teamId.equals(temp.get("guestId"))) {
+                if (teamId.equals(temp.get("homeId"))) {
+                    Integer homeGoal = Integer.parseInt(temp.get("homeGoal"));
+                    Integer homeGoalH = Integer.parseInt(temp.get("homeGoalH"));
+                    if (homeGoal - homeGoalH == 0) {
+                        signal++;
+                    } else {
+                        break;
+                    }
+                } else {
+                    Integer guestGoal = Integer.parseInt(temp.get("guestGoal"));
+                    Integer guestGoalH = Integer.parseInt(temp.get("guestGoalH"));
+                    if (guestGoal - guestGoalH == 0) {
+                        signal++;
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        return signal;
     }
 
     /**
