@@ -1,11 +1,9 @@
-package com.match.admin.utils;
+package com.match.admin.util;
 
 import org.junit.Test;
 
 import java.util.List;
 import java.util.Map;
-
-import static org.junit.Assert.*;
 
 public class SpiderMiscTest {
     @Test
@@ -16,13 +14,18 @@ public class SpiderMiscTest {
 
     @Test
     public void getMatchesByMatchesIdFromNet() throws Exception {
-        String response = SpiderMisc.getMatchesByMatchesIdFromNet("1474197");
+        String response = SpiderMisc.getMatchesByMatchIdFromNet("1474197");
         System.out.println(response);
     }
 
     @Test
     public void getPanLu() throws Exception {
-        System.out.println(SpiderMisc.getPanLu("1444567"));
+        System.out.println(SpiderMisc.getNoGoalCount("1444567"));
+    }
+
+    @Test
+    public void get70minMatchId() throws Exception {
+        System.out.println(SpiderMisc.get70minMatchId());
     }
 
 }

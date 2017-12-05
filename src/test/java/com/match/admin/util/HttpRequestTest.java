@@ -1,4 +1,4 @@
-package com.match.admin.utils;
+package com.match.admin.util;
 
 import org.junit.Test;
 

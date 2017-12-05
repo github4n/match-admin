@@ -4,7 +4,7 @@ package com.match.admin.web;
 import com.alibaba.fastjson.JSON;
 import com.match.admin.model.Odds;
 import com.match.admin.service.OddsService;
-import com.match.admin.utils.SpiderMisc;
+import com.match.admin.util.SpiderMisc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;

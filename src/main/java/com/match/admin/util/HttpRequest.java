@@ -1,4 +1,4 @@
-package com.match.admin.utils;
+package com.match.admin.util;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
