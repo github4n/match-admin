@@ -20,18 +20,19 @@ public class GameTasks {
         System.out.println(new Date());
         ArrayList<HashMap<String, String>> matchIdList = SpiderMisc.get70minMatchId();
         System.out.println(String.format("70min比赛：%s", matchIdList));
+        String text = "";
         for (Map<String, String> temp : matchIdList) {
             ArrayList<Integer> noGoalList = SpiderMisc.getNoGoalCount(temp.get("matchId"));
             System.out.println(noGoalList);
             if (noGoalList.get(0) >= 3 || noGoalList.get(1) >= 3) {
-                task1EmailStr = String.format("%s<p>%s</p><p>%s</p><p>%s</p><p></p>", task1EmailStr, temp.get("league"), temp.get("matchTeam"), temp.get("matchGoal"));
+                text = String.format("%s<p>%s</p><p>%s</p><p></p>", text, JSONObject.toJSONString(temp), JSONObject.toJSONString(noGoalList));
             } else {
                 continue;
             }
         }
-        if (!"".equals(task1EmailStr)) {
-            EmailMisc.sendEmail("70min match", task1EmailStr);
-            task1EmailStr = "";
+        if (!"".equals(text) && !task1EmailStr.equals(text)) {
+            EmailMisc.sendEmail("70min match", text);
+            task1EmailStr = text;
         }
     }
 }

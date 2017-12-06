@@ -20,7 +20,7 @@ public class SpiderMiscTest {
 
     @Test
     public void getPanLu() throws Exception {
-        System.out.println(SpiderMisc.getNoGoalCount("1461100"));
+        System.out.println(SpiderMisc.getNoGoalCount("1483567"));
     }
 
     @Test
